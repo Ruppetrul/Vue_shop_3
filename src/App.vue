@@ -1,5 +1,6 @@
 <script setup>
   import SearchPanel from "@/components/main/SearchPanel.vue";
+  import TopFilterPanel from "@/components/main/TopFilterPanel.vue";
   import ItemsPanel from "@/components/main/ItemsPanel.vue";
   import axios from "axios";
   import {ref} from "vue";
@@ -7,12 +8,26 @@
   const items = ref([]);
   let page = 1;
 
-  function fetchItems(search_filter = '') {
+  let search = '';
+  let order = '';
+
+  function change_search_filter(search_filter) {
+    search = search_filter;
+    fetchItems();
+  }
+
+  function change_order_filter(order_filter) {
+    order = order_filter;
+    fetchItems();
+  }
+
+  function fetchItems() {
     const params = new URLSearchParams(
         {
           only_data: 1,
           page: page,
-          search: search_filter
+          search: search,
+          priority_filter: order
         }
     );
 
@@ -30,7 +45,8 @@
 <template>
   <div class="container">
     <div class="container-fluid-lg">
-        <SearchPanel :fetchItems="fetchItems"/>
+        <SearchPanel :change_search_filter="change_search_filter"/>
+        <TopFilterPanel :change_order_filter="change_order_filter"/>
         <ItemsPanel :items="items"/>
     </div>
   </div>

@@ -1,13 +1,13 @@
 <script setup>
   import {defineProps, ref } from 'vue';
 
-  const props = defineProps(['fetchItems'])
+  const props = defineProps(['change_search_filter'])
 
   const timer = ref(null);
   const handleInput = (value) => {
     clearTimeout(timer.value);
     timer.value = setTimeout(() => {
-      props.fetchItems(value);
+      props.change_search_filter(value);
     }, 300);
   }
 </script>
