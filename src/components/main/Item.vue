@@ -25,5 +25,9 @@
   .item_cart {
     text-align: center;
     padding: 10px;
+    background-color: #F8F8FF;
+  }
+  .item_avatar {
+    height: 200px;
   }
 </style>
