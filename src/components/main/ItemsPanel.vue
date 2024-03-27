@@ -1,8 +1,28 @@
 <script setup>
   import Item from './Item.vue';
-  import {defineProps} from "vue";
+  import {defineProps, onMounted, watch, ref} from "vue";
 
-  const props = defineProps(['items'])
+  const props = defineProps(['items', 'paginate'])
+
+  const bottomOfPage = ref(false);
+
+  const handleScroll = () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight;
+
+    bottomOfPage.value = scrollTop + clientHeight >= scrollHeight - 50;
+  }
+
+  onMounted(() => {
+    window.addEventListener('scroll', handleScroll)
+  })
+
+  watch(bottomOfPage, (newValue) => {
+    if (newValue) {
+      props.paginate();
+    }
+  });
 </script>
 
 <template>
