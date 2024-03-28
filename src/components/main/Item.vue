@@ -27,7 +27,7 @@
   <div class="item_cart_container">
     <div class="item_cart">
       <div class="item_avatar">
-        <img src="https://source.unsplash.com/200x200/?avatar" width="200" height="200" alt="Дефолтная картинка" loading="lazy">
+        <img :src="props.itemData.avatar_url" width="200" height="200" alt="Дефолтная картинка" loading="lazy">
       </div>
       <div class="item_detail">
         <a>{{ props.itemData.title }}</a>
@@ -73,8 +73,11 @@
   }
 
   .item_footer {
-    margin-top: auto;
     text-align: center;
+  }
+
+  .item_detail {
+    margin-top: auto;
   }
 
   .item_footer button {
