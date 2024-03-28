@@ -64,7 +64,7 @@
 
 <style scoped>
   #page {
-    height: 100vh;
+    height: 100%;
     padding-top: 10px;
     background-color: aliceblue;
   }
