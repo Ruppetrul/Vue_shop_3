@@ -2,17 +2,17 @@
   import SearchPanel from "@/components/main/SearchPanel.vue";
   import TopFilterPanel from "@/components/main/TopFilterPanel.vue";
   import ItemsPanel from "@/components/main/ItemsPanel.vue";
-  import axios from "axios";
-  import {ref} from "vue";
+  import { ref } from "vue";
+  import { getItems } from '@/api/getItems.js';
 
   const items = ref([]);
-  let page = 1;
+  let page = 0;
   let has_more = true;
 
   let search = '';
   let order = '';
 
-  function fetchItems(is_paginate = false) {
+  async function fetchItems(is_paginate = false) {
     const params = new URLSearchParams(
       {
         only_data: 1,
@@ -22,18 +22,11 @@
       }
     );
 
-    axios.get(`/api/products?${params.toString()}`)
-      .then(response => {
-        has_more = response.data.has_more;
-        if (!is_paginate) {
-          items.value = response.data.products.data;
-        } else {
-          items.value = items.value.concat(response.data.products.data);
-        }
-      })
-      .catch(error => {
-        console.error('Ошибка при получении списка продуктов:', error);
-      });
+    await getItems(params, is_paginate, items, setHasMore);
+  }
+
+  function setHasMore(value) {
+    has_more = value;
   }
 
   function change_search_filter(search_filter) {
@@ -48,28 +41,31 @@
     fetchItems();
   }
 
-  function paginate() {
+  async function paginate() {
     page += 1;
     if (has_more) {
-      fetchItems(true);
+      await fetchItems(true);
     }
   }
 
-  fetchItems();
 </script>
 
 <template>
-  <div class="container">
-    <div class="container-fluid-lg">
+  <div id="page">
+    <div class="container">
+      <div class="container-fluid-lg">
         <SearchPanel :change_search_filter="change_search_filter"/>
         <TopFilterPanel :change_order_filter="change_order_filter"/>
-        <ItemsPanel :items="items" :paginate="paginate"/>
+        <ItemsPanel :items="items" :paginate="paginate" :has_more="has_more"/>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-  .container {
+  #page {
+    height: 100vh;
     padding-top: 10px;
+    background-color: aliceblue;
   }
 </style>

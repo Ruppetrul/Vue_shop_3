@@ -18,7 +18,7 @@ export default defineConfig({
       '/api': {
         target: 'http://simply-shop-customer',
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, '/mini/106/ajax')
+        rewrite: path => path.replace(/^\/api/, '/mini/106')
       }
     }
   }

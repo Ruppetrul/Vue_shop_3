@@ -1,5 +1,5 @@
 <script setup>
-  import {defineProps} from "vue";
+  import { defineProps } from "vue";
 
   const props = defineProps(['change_order_filter'])
 
@@ -19,7 +19,10 @@
 </template>
 
 <style scoped>
-#top-filter-panel {
-  margin-top: 10px;
-}
+  #top-filter-panel {
+    margin-top: 10px;
+  }
+  #filterSelect {
+    border-radius: 4px;
+  }
 </style>

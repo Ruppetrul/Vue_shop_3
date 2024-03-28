@@ -1,8 +1,8 @@
 <script setup>
   import Item from './Item.vue';
-  import {defineProps, onMounted, watch, ref} from "vue";
+  import { defineProps, onMounted, watch, ref } from "vue";
 
-  const props = defineProps(['items', 'paginate'])
+  const props = defineProps(['items', 'paginate', 'has_more'])
 
   const bottomOfPage = ref(false);
 
@@ -14,9 +14,25 @@
     bottomOfPage.value = scrollTop + clientHeight >= scrollHeight - 50;
   }
 
+  const isScreenFilledWithCards = () => {
+    const clientHeight = document.documentElement.clientHeight;
+    const cardContainerHeight = document.getElementById('items_panel').offsetHeight;
+    return cardContainerHeight >= clientHeight;
+  }
+
   onMounted(() => {
-    window.addEventListener('scroll', handleScroll)
-  })
+    window.addEventListener('scroll', handleScroll);
+
+    const fetchDataIfNeeded = async () => {
+      props.paginate();
+      setTimeout(() => {
+        if (!isScreenFilledWithCards() && props.has_more) {
+          fetchDataIfNeeded();
+      }}, 1000);
+    };
+
+    fetchDataIfNeeded();
+  });
 
   watch(bottomOfPage, (newValue) => {
     if (newValue) {
@@ -26,7 +42,7 @@
 </script>
 
 <template>
-  <div class="row row-cols-3" id="items_panel">
+  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6" id="items_panel">
     <Item v-for="(item, index) in props.items" :key="index" :itemData="item" />
   </div>
 </template>

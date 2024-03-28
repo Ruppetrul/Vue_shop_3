@@ -20,5 +20,7 @@
 <style scoped>
   #search_text {
     padding: 10px;
+    border: ridge;
+    border-radius: 6px;
   }
 </style>
