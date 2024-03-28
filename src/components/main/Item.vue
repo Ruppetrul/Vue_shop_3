@@ -30,7 +30,7 @@
         <img src="https://source.unsplash.com/200x200/?avatar" width="200" height="200" alt="Дефолтная картинка" loading="lazy">
       </div>
       <div class="item_detail">
-        <a>{{ props.itemData.title }} ({{props.itemData.id}})</a>
+        <a>{{ props.itemData.title }}</a>
         <h5>{{ props.itemData.price }}</h5>
       </div>
       <div class="item_footer">
