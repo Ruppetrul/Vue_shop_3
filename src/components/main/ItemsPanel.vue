@@ -42,7 +42,7 @@
 </script>
 
 <template>
-  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6" id="items_panel">
+  <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5" id="items_panel">
     <Item v-for="(item, index) in props.items" :key="index" :itemData="item" />
   </div>
 </template>
