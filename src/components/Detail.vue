@@ -10,7 +10,7 @@
   const medias = ref([]);
   const isLoading = ref(true);
 
-  async function fetchData() {
+  (async () => {
     try {
       const route = useRoute();
       item.value = await getItem(route.params.item_id);
@@ -19,26 +19,7 @@
     } catch (error) {
       console.error(error);
     }
-  }
-
-  const decreaseCount = () => {
-    item.value.quantity_in_cart--;
-  };
-
-  const increaseCount = () => {
-    item.value.quantity_in_cart++;
-  };
-
-  let timer = null;
-  watch(() => item.value.quantity_in_cart, (newValue) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      console.log('updateCount');
-      updateCount(item.value.id, newValue);
-    }, 300);
-  });
-
-  fetchData();
+  })();
 </script>
 
 <template>
