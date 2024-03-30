@@ -32,7 +32,7 @@
         </router-link>
       </div>
       <div class="item_detail">
-        <router-link :to="'/detail/' + props.itemData.id">{{ props.itemData.title }}</router-link>
+        <router-link :to="`/detail/${props.itemData.id}`">{{ props.itemData.title }}</router-link>
         <h5>{{ props.itemData.price }}</h5>
       </div>
       <div class="item_footer">
