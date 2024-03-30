@@ -27,7 +27,7 @@
   <div class="item_cart_container">
     <div class="item_cart">
       <div class="item_avatar">
-        <RouterLink :to="'/detail/' + props.itemData.id">
+        <RouterLink :to="`/detail/${props.itemData.id}`">
           <img :src="props.itemData.avatar_url" width="200" height="200" alt="Дефолтная картинка" loading="lazy">
         </RouterLink>
       </div>
