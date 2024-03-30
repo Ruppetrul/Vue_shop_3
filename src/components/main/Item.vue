@@ -26,10 +26,12 @@
   <div class="item_cart_container">
     <div class="item_cart">
       <div class="item_avatar">
-        <img :src="props.itemData.avatar_url" width="200" height="200" alt="Дефолтная картинка" loading="lazy">
+        <router-link :to="`/detail/${props.itemData.id}`">
+          <img :src="props.itemData.avatar_url" width="200" height="200" alt="Дефолтная картинка" loading="lazy">
+        </router-link>
       </div>
       <div class="item_detail">
-        <a>{{ props.itemData.title }}</a>
+        <router-link :to="`/detail/${props.itemData.id}`">{{ props.itemData.title }}</router-link>
         <h5>{{ props.itemData.price }}</h5>
       </div>
       <div class="item_footer">

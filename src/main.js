@@ -14,9 +14,17 @@ const router = createRouter({
     routes: [
         { path: '/', component: Main},
         { path: '/cart', component: Cart},
-        { path: '/detail', component: Detail},
+        { path: '/detail/:item_id', component: Detail, props: true, meta: { requiresItemId: true }},
         { path: '/order', component: Order}
     ]
+})
+
+router.beforeResolve((to, from, next) => {
+    if (to.path === '/detail' && !to.params.item_id) {
+        next('/')
+    } else {
+        next()
+    }
 })
 
 createApp(App).use(router).mount('#app')
