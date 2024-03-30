@@ -139,21 +139,22 @@
   padding-left: 20px;
 }
 
-.placeholder_text {
+.placeholder_text, .placeholder_image, .placeholder_quantity_panel {
   background-color: #f0f0f0;
+}
+
+.placeholder_text {
   height: 1em;
   animation: pulse 0.5s infinite alternate;
 }
 
 .placeholder_image {
-  background-color: #f0f0f0;
   width: auto;
   height: 40vh;
   animation: pulse 0.5s infinite alternate;
 }
 
 .placeholder_quantity_panel {
-  background-color: #f0f0f0;
   height: 50px;
   animation: pulse 0.5s infinite alternate;
 }
