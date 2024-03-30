@@ -22,7 +22,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
   .placeholder_image {
     width: auto;
     height: 40vh;
