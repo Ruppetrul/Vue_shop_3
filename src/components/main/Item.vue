@@ -17,7 +17,6 @@
   watch(() => props.itemData.quantity_in_cart, (newValue) => {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      console.log('updateCount');
        updateCount(props.itemData.id, newValue);
     }, 300);
   });
