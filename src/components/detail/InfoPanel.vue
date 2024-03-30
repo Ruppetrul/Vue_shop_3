@@ -17,7 +17,6 @@
   watch(() => props.item.quantity_in_cart, (newValue) => {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      console.log('updateCount');
       updateCount(props.item.id, newValue);
     }, 300);
   });
@@ -62,17 +61,16 @@
 
   .placeholder_text, .placeholder_quantity_panel {
     background-color: #f0f0f0;
+    animation: pulse 0.5s infinite alternate;
   }
 
   .placeholder_text {
     height: 1em;
-    animation: pulse 0.5s infinite alternate;
   }
 
   .placeholder_quantity_panel {
     height: 50px;
-    animation: pulse 0.5s infinite alternate;
-  }
+   }
 
   .item_quantity_control_panel button {
     border: none;

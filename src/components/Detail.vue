@@ -1,6 +1,6 @@
 <script setup>
   import { getItem } from '@/api/getItem.js';
-  import { ref, watch } from "vue";
+  import { ref } from "vue";
   import { useRoute } from 'vue-router';
 
   import Medias from "@/components/detail/Medias.vue";
